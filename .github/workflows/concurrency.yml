@@ -8,4 +8,4 @@ jobs:
   sleep:
     runs-on: ubuntu-latest
     steps:
-      - run: sleep 110
+      - run: sleep 10
