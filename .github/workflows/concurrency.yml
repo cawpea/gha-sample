@@ -1,8 +1,11 @@
 name: Concurrency
 on: push
-concurrency: ${{ github.workflow }}
+concurrency:
+  # 同じプルリクエストの同じワークフローが複数起動した場合に古いワークフローをキャンセルする
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   sleep:
     runs-on: ubuntu-latest
     steps:
-      - run: sleep 110
+      - run: sleep 120
