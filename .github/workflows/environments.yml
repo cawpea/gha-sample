@@ -1,0 +1,19 @@
+name: Environments
+on:
+  workflow_dispatch:
+    inputs:
+      environment-name:
+        type: environment
+        default: test
+        required: false
+        description: Environment name
+jobs:
+  print:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment-name }}
+    env:
+      SECRET: ${{ secrets.TEST_SECRET }}
+      VARIABLE: ${{ vars.TEST_VARIABLE }}
+    steps:
+      - run: echo "${SECRET}"
+      - run: echo "${VARIABLE}"
